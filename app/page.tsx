@@ -5,11 +5,18 @@ import Link from "next/link";
 
 const projects = [
   {
-    title: "PRODIGE ANAPEC Labor Market Observatory",
-    description: "Implementation of Dataiku DSS-based MVP for national labor market analysis. Built end-to-end pipeline ingesting 500,000+ job offers from Scrapy web scraping with MySQL structured data. Used Dataiku Flow with Visual Prepare Recipes, Python Code Environments with PyTorch/spaCy/transformers for BERT and RNN-seq2Seq skill extraction, and containerized execution on Kubernetes with GPU allocation. Implemented Metrics & Checks for data quality, automated Scenario triggering, and created Application Template for regional replication across MEA countries.",
-    tech: ["Dataiku DSS", "Python", "PyTorch", "spaCy", "Transformers", "BERT", "RNN", "Seq2Seq", "Kubernetes", "Docker", "MySQL", "S3"],
+    title: "Dataiku POC - PRODIGE ANAPEC Labor Market Observatory",
+    description: "2-Month MVP Build Proof of Concept using Dataiku DSS. Rapid prototyping with Scrapy web-scraped job offers and MySQL structured tables. Implemented Visual Prepare Recipes for data cleaning, Python Code Environments with PyTorch/spaCy/transformers for BERT and RNN-seq2Seq skill extraction, and containerized execution on Kubernetes with GPU allocation. Used Smart Sampling for experiments on 10,000+ multi-lingual records. Created Application Template for regional replication across MEA countries.",
+    tech: ["Dataiku DSS", "Python", "PyTorch", "spaCy", "Transformers", "BERT", "RNN", "Seq2Seq", "Kubernetes", "Docker", "MySQL", "S3", "Scrapy"],
     link: "#",
     category: "Data Science Platform"
+  },
+  {
+    title: "PRODIGE ANAPEC Job Offers Pipeline",
+    description: "Full Stack Developer / Data Miner implementation for national labor market observatory. Designed and developed end-to-end data pipeline for 100,000+ Moroccan job listings. Built data scraping and analysis system using Scrapy, Ruby, Python with Machine Learning, Seq2Seq, and TextRank algorithms. Created API Backend for WhatsApp Business integration with CRM using Drupal, Spring Boot, React.js, WATI, and Ultramsg. Developed MySQL database schema and assisted in Data Warehouse architecture.",
+    tech: ["Python", "Scrapy", "Ruby", "BERT", "GPT", "LLaMA", "Seq2Seq", "TextRank", "Drupal", "Spring Boot", "React.js", "MySQL", "WhatsApp API", "Data Warehouse"],
+    link: "#",
+    category: "Data Engineering"
   },
   {
     title: "WhatsApp Business API Integration",
