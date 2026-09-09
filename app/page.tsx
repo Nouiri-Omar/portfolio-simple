@@ -7,46 +7,76 @@ import Link from "next/link";
 
 const projects = [
   {
-    title: "Dataiku POC - PRODIGE ANAPEC",
-    description: "2-Month MVP Build Proof of Concept using Dataiku DSS. Implemented Scrapy web-scraped job offers with MySQL structured tables. Created Python Code Environments with PyTorch/spaCy/transformers for BERT and RNN-seq2Seq skill extraction. Containerized execution on Kubernetes with GPU allocation. Used Smart Sampling for multi-lingual records (French, Arabic, English). Created Application Template for regional replication.",
-    tech: ["Dataiku DSS", "Python", "PyTorch", "spaCy", "Transformers", "BERT", "RNN", "Seq2Seq", "Kubernetes", "Docker", "MySQL", "S3", "Scrapy"],
-    category: "Data Science Platform",
-    image: "/images/dataiku-poc.png"
-  },
-  {
-    title: "PRODIGE ANAPEC Job Offers Pipeline",
-    description: "Full Stack Developer / Data Miner implementation for national labor market observatory. Built end-to-end data pipeline for 100,000+ Moroccan job listings. Data scraping and analysis system using Scrapy, Ruby, Python with Machine Learning, Seq2Seq, and TextRank algorithms. API Backend for WhatsApp Business integration with CRM using Drupal, Spring Boot, React.js, WATI, and Ultramsg.",
-    tech: ["Python", "Scrapy", "Ruby", "BERT", "GPT", "LLaMA", "Seq2Seq", "TextRank", "Drupal", "Spring Boot", "React.js", "MySQL", "WhatsApp API", "Data Warehouse"],
-    category: "Data Engineering",
-    image: "/images/job-pipeline.png"
-  },
-  {
-    title: "WhatsApp Business API Integration",
-    description: "Conception and development of API Backend integrating WhatsApp with CRM systems. Built API solutions for WhatsApp Business API using Drupal, Spring Boot, React.js, WATI, and Ultramsg for seamless customer communication.",
-    tech: ["Python", "FastAPI", "React.js", "GraphQL", "Expo", "Strapi", "MySQL"],
-    category: "API Development",
-    image: "/images/whatsapp-api.png"
-  },
-  {
-    title: "Insurance Document Intelligence & PII Redaction",
-    description: "Production document Q&A system on AWS with hybrid retrieval and reranking. Automated PII redaction for insurance/financial documents using LLMs (Claude, LLaMA, Mistral) and AWS serverless architecture (Textract, Step Functions, Lambda). Extended into an agentic AI workflow.",
-    tech: ["Python", "LangChain", "FastAPI", "AWS Lambda", "S3", "Claude", "LLaMA", "Mistral", "LLMs", "RAG"],
+    title: "RAG Insurance AI Assistant",
+    description: "End-to-end Retrieval-Augmented Generation (RAG) system built for enterprise insurance clients. Enables natural language querying over large proprietary document repositories. Reduced end-to-end response latency by 10 seconds and improved answer accuracy by 20% over baseline RAG.",
+    tech: ["Python", "LangChain", "GPT-4", "AWS Lambda", "AWS S3", "Vector DB", "BM25", "Cross-Encoder Reranking", "Prompt Engineering", "RAG", "Hybrid Search"],
     category: "Generative AI",
-    image: "/images/insurance-ai.png"
+    period: "2024 – 2025",
+    company: "DXC Technology",
+    role: "AI/ML Engineer → Senior AI/ML Consultant"
   },
   {
-    title: "Production RAG System with Hybrid Search",
-    description: "Architected and optimized a production Retrieval-Augmented Generation system featuring hybrid search capabilities combining dense and sparse retrieval methods with cross-encoder reranking. Achieved 10-second reduction in response latency and 20% improvement in output accuracy.",
-    tech: ["Python", "LangChain", "FastAPI", "RAG", "Hybrid Search", "Cross-Encoder", "Vector Embeddings", "Prompt Engineering", "LLMs"],
+    title: "IDP / PII Extraction Pipeline",
+    description: "Intelligent Document Processing (IDP) system that automatically detects and extracts Personally Identifiable Information (PII) from both structured (forms/tables) and unstructured (free-text) documents at scale. Built two production-grade IDP pipelines under one unified architecture.",
+    tech: ["Python", "Amazon Textract", "AWS S3", "NER", "PII Detection", "Document Processing", "IDP", "JSON", "Pipeline Design"],
     category: "Generative AI",
-    image: "/images/rag-system.png"
+    period: "2025 – Present",
+    company: "DXC Technology",
+    role: "Senior AI/ML Consultant"
+  },
+  {
+    title: "Multi-modal RAG Enrichment",
+    description: "Extension of the RAG system to handle non-text content inside documents. Graphs, tables, and images embedded in PDFs were described via Claude Haiku vision LLM and embedded alongside text chunks into the same vector database.",
+    tech: ["Python", "Claude Haiku", "Vision LLM", "PyMuPDF", "Vector DB", "Embeddings", "Multi-modal RAG", "LangChain", "AWS"],
+    category: "Generative AI",
+    period: "2024 – 2025",
+    company: "DXC Technology",
+    role: "AI/ML Engineer"
+  },
+  {
+    title: "Darija Voice Bot + CNN Audio Classifier",
+    description: "Voice-activated banking assistant capable of understanding Moroccan Arabic (Darija). Combined a fine-tuned speech recognition model (Wav2Vec2) with a CNN-based intent classifier trained on MFCC audio features. OpenCV was used for spectrogram preprocessing.",
+    tech: ["Python", "PyTorch", "CNN", "MFCC", "librosa", "OpenCV", "Meta Wav2Vec2", "Hugging Face Transformers", "Audio Classification", "Darija NLP", "Fine-tuning"],
+    category: "NLP",
+    period: "2021 – 2023",
+    company: "Digital Place",
+    role: "Data Scientist / AI & NLP Engineer"
   },
   {
     title: "Darija Conversational Banking Assistant",
-    description: "Won the national Fintech Catalyst challenge by building a Darija-dialect conversational banking assistant for Moroccan clients. Implemented custom NLP models using RASA framework with specialized language processing for Moroccan Arabic dialect.",
-    tech: ["RASA", "Python", "NLP", "Machine Learning", "French", "Arabic", "Darija", "Banking AI"],
+    description: "Full conversational banking assistant for Moroccan Arabic (Darija), capable of multi-turn dialogue and executing structured banking actions. Built pre-LLM era using the RASA framework with custom NLU models. Achieved 95% accuracy on French and Arabic transcription.",
+    tech: ["Python", "RASA", "NLU", "NER", "spaCy", "NLTK", "Custom NLP", "Darija", "Arabic NLP", "French NLP", "Mobile Integration", "Action Server"],
     category: "Conversational AI",
-    image: "/images/darija-assistant.png"
+    period: "2021 – 2023",
+    company: "Digital Place",
+    role: "Data Scientist / AI & NLP Engineer"
+  },
+  {
+    title: "Job Market Intelligence Platform (Prodige)",
+    description: "End-to-end labor market intelligence platform built for a national employment agency. Scraped, processed, classified, and analyzed Moroccan job postings at scale. Processed 500,000+ Moroccan job postings through automated pipelines.",
+    tech: ["Python", "Scrapy", "Apache Airflow", "MySQL", "Neo4j", "BERT", "LLaMA", "GPT", "PyTorch", "Hugging Face Transformers", "RNN", "Seq2Seq", "Bayesian Modeling", "PowerBI", "DAX", "Docker", "spaCy", "NLTK"],
+    category: "Data Engineering",
+    period: "2021 – 2023",
+    company: "Digital Place (client: ANAPEC)",
+    role: "Data Scientist / ML Engineer"
+  },
+  {
+    title: "Dataiku POC - PRODIGE ANAPEC",
+    description: "Proof of Concept built in 2 months on Dataiku DSS. Rapid prototyping platform to validate the core ML pipeline — BERT and RNN-seq2seq skill extraction on multilingual job offer data. Delivered full POC with 10,000+ multi-lingual records.",
+    tech: ["Dataiku DSS", "Python", "PyTorch", "spaCy", "Hugging Face Transformers", "BERT", "RNN", "Seq2Seq", "Scrapy", "MySQL", "Kubernetes", "GPU", "Smart Sampling", "Visual Prepare Recipes", "Multi-lingual NLP"],
+    category: "Data Science Platform",
+    period: "2022 (2-month MVP)",
+    company: "Digital Place (client: ANAPEC)",
+    role: "ML Engineer / Data Scientist"
+  },
+  {
+    title: "AI-Enhanced Startup Search Engine (Rialto)",
+    description: "Improved the Rialto startup discovery platform's search relevance by automatically generating semantic keywords from startup descriptions. Built a generative keyword system using attention-based RNN seq2seq model that creates new relevant terms not present in the original text.",
+    tech: ["Python", "PyTorch", "RNN", "Seq2Seq", "Attention Mechanisms", "BERT", "TextRank", "RAKE", "YAKE", "Neo4j", "Scrapy", "Ruby", "Graph Database", "NLP", "Keyword Generation"],
+    category: "Generative AI",
+    period: "April 2021 – May 2021",
+    company: "Digital Place (client: Mind the Bridge)",
+    role: "ML Engineer / Data Scientist"
   }
 ];
 
@@ -65,8 +95,6 @@ export default function Home() {
             <Link href="#book" className="hover:text-[#64ffda] transition-colors">Projects</Link>
             <Link href="#tech" className="hover:text-[#64ffda] transition-colors">Tech Stack</Link>
             <Link href="#contact" className="hover:text-[#64ffda] transition-colors">Contact</Link>
-            <Link href="https://github.com/Nouiri-Omar" target="_blank" className="hover:text-[#64ffda] transition-colors">GitHub</Link>
-            <Link href="https://linkedin.com/in/omar-nouiri" target="_blank" className="hover:text-[#64ffda] transition-colors">LinkedIn</Link>
           </div>
         </div>
       </nav>
@@ -161,19 +189,64 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* WhatsApp API Page */}
+                  {/* RAG Insurance AI Page */}
                   <div className="flex flex-col h-full bg-white dark:bg-zinc-800 p-8 rounded-lg">
                     <div className="flex items-center mb-6">
                       <div className="w-12 h-12 bg-[#0a192f] rounded-lg flex items-center justify-center mr-4">
-                        <span className="text-2xl">💬</span>
+                        <span className="text-2xl">🛡️</span>
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold text-[#0a192f] dark:text-white">WhatsApp API</h3>
-                        <span className="text-sm text-[#64ffda]">API Development</span>
+                        <h3 className="text-2xl font-bold text-[#0a192f] dark:text-white">RAG Insurance AI</h3>
+                        <span className="text-sm text-[#64ffda]">Generative AI</span>
                       </div>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 flex-1">
-                      Conception and development of API Backend integrating WhatsApp with CRM systems. Built API solutions using Drupal, Spring Boot, React.js, WATI, and Ultramsg for seamless customer communication.
+                    <p className="text-gray-600 dark:text-gray-300 mb-3 flex-1">
+                      <strong>DXC Technology</strong> | 2024 – 2025<br/><br/>
+                      End-to-end RAG system for enterprise insurance clients. Enables natural language querying over large document repositories with hybrid search (dense + sparse) and cross-encoder reranking. Reduced latency by 10 seconds and improved accuracy by 20%.
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {projects[0].tech.map((t, i) => (
+                        <span key={i} className="px-2 py-1 bg-[#f0f0f0] dark:bg-zinc-700 text-xs rounded">{t}</span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* IDP / PII Extraction Page */}
+                  <div className="flex flex-col h-full bg-white dark:bg-zinc-800 p-8 rounded-lg">
+                    <div className="flex items-center mb-6">
+                      <div className="w-12 h-12 bg-[#0a192f] rounded-lg flex items-center justify-center mr-4">
+                        <span className="text-2xl">📄</span>
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold text-[#0a192f] dark:text-white">IDP / PII Extraction</h3>
+                        <span className="text-sm text-[#64ffda]">Generative AI</span>
+                      </div>
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-300 mb-3 flex-1">
+                      <strong>DXC Technology</strong> | 2025 – Present<br/><br/>
+                      Intelligent Document Processing system detecting and extracting PII from structured and unstructured documents at scale. Built two production-grade IDP pipelines with Amazon Textract OCR and rule-based + ML NER layer.
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {projects[1].tech.map((t, i) => (
+                        <span key={i} className="px-2 py-1 bg-[#f0f0f0] dark:bg-zinc-700 text-xs rounded">{t}</span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Multi-modal RAG Page */}
+                  <div className="flex flex-col h-full bg-white dark:bg-zinc-800 p-8 rounded-lg">
+                    <div className="flex items-center mb-6">
+                      <div className="w-12 h-12 bg-[#0a192f] rounded-lg flex items-center justify-center mr-4">
+                        <span className="text-2xl">🖼️</span>
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold text-[#0a192f] dark:text-white">Multi-modal RAG</h3>
+                        <span className="text-sm text-[#64ffda]">Generative AI</span>
+                      </div>
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-300 mb-3 flex-1">
+                      <strong>DXC Technology</strong> | 2024 – 2025<br/><br/>
+                      Extended RAG system to handle non-text content. Graphs, tables, and images described via Claude Haiku vision LLM and embedded alongside text chunks into the same vector database.
                     </p>
                     <div className="flex flex-wrap gap-2 mt-auto">
                       {projects[2].tech.map((t, i) => (
@@ -182,19 +255,20 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* Insurance AI Page */}
+                  {/* Darija Voice Bot Page */}
                   <div className="flex flex-col h-full bg-white dark:bg-zinc-800 p-8 rounded-lg">
                     <div className="flex items-center mb-6">
                       <div className="w-12 h-12 bg-[#0a192f] rounded-lg flex items-center justify-center mr-4">
-                        <span className="text-2xl">🛡️</span>
+                        <span className="text-2xl">🎙️</span>
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold text-[#0a192f] dark:text-white">Insurance AI</h3>
-                        <span className="text-sm text-[#64ffda]">Generative AI</span>
+                        <h3 className="text-2xl font-bold text-[#0a192f] dark:text-white">Darija Voice Bot</h3>
+                        <span className="text-sm text-[#64ffda]">NLP</span>
                       </div>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 flex-1">
-                      Production document Q&A system on AWS with hybrid retrieval and reranking. Automated PII redaction for insurance/financial documents using LLMs and AWS serverless architecture.
+                    <p className="text-gray-600 dark:text-gray-300 mb-3 flex-1">
+                      <strong>Digital Place</strong> | 2021 – 2023<br/><br/>
+                      Voice-activated banking assistant for Moroccan Arabic (Darija). Combined fine-tuned Wav2Vec2 ASR with CNN-based intent classifier on MFCC features. OpenCV used for spectrogram preprocessing. Presented at GITEX.
                     </p>
                     <div className="flex flex-wrap gap-2 mt-auto">
                       {projects[3].tech.map((t, i) => (
@@ -203,19 +277,20 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* RAG System Page */}
+                  {/* Darija Conversational Page */}
                   <div className="flex flex-col h-full bg-white dark:bg-zinc-800 p-8 rounded-lg">
                     <div className="flex items-center mb-6">
                       <div className="w-12 h-12 bg-[#0a192f] rounded-lg flex items-center justify-center mr-4">
-                        <span className="text-2xl">🔍</span>
+                        <span className="text-2xl">💬</span>
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold text-[#0a192f] dark:text-white">RAG System</h3>
-                        <span className="text-sm text-[#64ffda]">Generative AI</span>
+                        <h3 className="text-2xl font-bold text-[#0a192f] dark:text-white">Darija Assistant</h3>
+                        <span className="text-sm text-[#64ffda]">Conversational AI</span>
                       </div>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 flex-1">
-                      Production Retrieval-Augmented Generation system with hybrid search combining dense and sparse retrieval with cross-encoder reranking. Achieved 10-second latency reduction and 20% accuracy improvement.
+                    <p className="text-gray-600 dark:text-gray-300 mb-3 flex-1">
+                      <strong>Digital Place</strong> | 2021 – 2023<br/><br/>
+                      Full conversational banking assistant for Moroccan Arabic (Darija). Built pre-LLM era using RASA with custom NLU models. Achieved 95% accuracy on French and Arabic transcription. 10,000+ active users.
                     </p>
                     <div className="flex flex-wrap gap-2 mt-auto">
                       {projects[4].tech.map((t, i) => (
@@ -224,22 +299,67 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* Darija Assistant Page */}
+                  {/* Job Market Intelligence Page */}
                   <div className="flex flex-col h-full bg-white dark:bg-zinc-800 p-8 rounded-lg">
                     <div className="flex items-center mb-6">
                       <div className="w-12 h-12 bg-[#0a192f] rounded-lg flex items-center justify-center mr-4">
-                        <span className="text-2xl">🎤</span>
+                        <span className="text-2xl">📊</span>
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold text-[#0a192f] dark:text-white">Darija Assistant</h3>
-                        <span className="text-sm text-[#64ffda]">Conversational AI</span>
+                        <h3 className="text-2xl font-bold text-[#0a192f] dark:text-white">Job Market Intelligence</h3>
+                        <span className="text-sm text-[#64ffda]">Data Engineering</span>
                       </div>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 flex-1">
-                      Darija-dialect conversational banking assistant using RASA framework with specialized language processing for Moroccan Arabic dialect. 95% accuracy achieved.
+                    <p className="text-gray-600 dark:text-gray-300 mb-3 flex-1">
+                      <strong>Digital Place (ANAPEC)</strong> | 2021 – 2023<br/><br/>
+                      End-to-end labor market platform. Scraped, processed, classified 500,000+ Moroccan job postings via Scrapy + Airflow pipelines. BERT + LLaMA for job classification and skill extraction. PowerBI dashboards for stakeholders.
                     </p>
                     <div className="flex flex-wrap gap-2 mt-auto">
                       {projects[5].tech.map((t, i) => (
+                        <span key={i} className="px-2 py-1 bg-[#f0f0f0] dark:bg-zinc-700 text-xs rounded">{t}</span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Dataiku POC Page */}
+                  <div className="flex flex-col h-full bg-white dark:bg-zinc-800 p-8 rounded-lg">
+                    <div className="flex items-center mb-6">
+                      <div className="w-12 h-12 bg-[#0a192f] rounded-lg flex items-center justify-center mr-4">
+                        <span className="text-2xl">💻</span>
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold text-[#0a192f] dark:text-white">Dataiku POC</h3>
+                        <span className="text-sm text-[#64ffda]">Data Science Platform</span>
+                      </div>
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-300 mb-3 flex-1">
+                      <strong>Digital Place (ANAPEC)</strong> | 2022 (2-month MVP)<br/><br/>
+                      Proof of Concept built in 2 months on Dataiku DSS. Validated BERT + RNN-seq2seq pipeline on 10,000+ multi-lingual records. Containerized on Kubernetes with GPU allocation. Application Template for MEA regional rollout.
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {projects[6].tech.map((t, i) => (
+                        <span key={i} className="px-2 py-1 bg-[#f0f0f0] dark:bg-zinc-700 text-xs rounded">{t}</span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Rialto Search Engine Page */}
+                  <div className="flex flex-col h-full bg-white dark:bg-zinc-800 p-8 rounded-lg">
+                    <div className="flex items-center mb-6">
+                      <div className="w-12 h-12 bg-[#0a192f] rounded-lg flex items-center justify-center mr-4">
+                        <span className="text-2xl">🚀</span>
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold text-[#0a192f] dark:text-white">Rialto Startup Search</h3>
+                        <span className="text-sm text-[#64ffda]">Generative AI</span>
+                      </div>
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-300 mb-3 flex-1">
+                      <strong>Digital Place (Mind the Bridge)</strong> | Apr – May 2021<br/><br/>
+                      AI-enhanced startup discovery platform. Generated semantic keywords from startup descriptions using attention-based RNN seq2seq model. Combined TextRank/RAKE/YAKE baselines with generative approach for improved search relevance.
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {projects[7].tech.map((t, i) => (
                         <span key={i} className="px-2 py-1 bg-[#f0f0f0] dark:bg-zinc-700 text-xs rounded">{t}</span>
                       ))}
                     </div>
@@ -268,6 +388,8 @@ export default function Home() {
                   >
                     <h4 className="text-xl font-bold">{project.title}</h4>
                     <p className="text-sm text-[#64ffda] mt-1">{project.category}</p>
+                    <p className="text-xs text-[#8892b0] mt-2">{project.company}</p>
+                    <p className="text-xs text-[#8892b0]">{project.period}</p>
                   </motion.div>
                 ))}
               </div>
@@ -314,8 +436,8 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center text-[#8892b0]">
           <p className="mb-4">© {new Date().getFullYear()} Omar Nouiri. All rights reserved.</p>
           <div className="flex justify-center gap-6">
-            <Link href="https://github.com/Nouiri-Omar" target="_blank" className="hover:text-[#64ffda] transition-colors">GitHub</Link>
-            <Link href="https://linkedin.com/in/omar-nouiri" target="_blank" className="hover:text-[#64ffda] transition-colors">LinkedIn</Link>
+            <Link href="#" className="hover:text-[#64ffda] transition-colors">GitHub</Link>
+            <Link href="#" className="hover:text-[#64ffda] transition-colors">LinkedIn</Link>
             <Link href="mailto:omar.nouiri98@gmail.com" className="hover:text-[#64ffda] transition-colors">Email</Link>
           </div>
         </div>
