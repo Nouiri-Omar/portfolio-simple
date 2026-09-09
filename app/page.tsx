@@ -6,51 +6,45 @@ import Link from "next/link";
 const projects = [
   {
     title: "WhatsApp Business API Integration",
-    description: "Conception and development of API Backend integrating WhatsApp with CRM systems for enterprise clients. Built robust API solutions enabling seamless customer communication channels using modern tech stack including Drupal, Spring Boot, React.js, WATI, and Ultramsg. Developed GraphQL interfaces for efficient data fetching and implemented server-side alerting systems for real-time notifications.",
-    tech: ["Python", "FastAPI", "React.js", "GraphQL", "Expo", "Strapi", "MySQL", "Drupal", "Spring Boot"],
+    description: "Conception and development of API Backend integrating WhatsApp with CRM systems. Built API solutions for WhatsApp Business API using Drupal, Spring Boot, React.js, WATI, and Ultramsg for seamless customer communication.",
+    tech: ["Python", "FastAPI", "React.js", "GraphQL", "Expo", "Strapi", "MySQL"],
     link: "#",
-    category: "API Development",
-    period: "April 2022 - Present"
+    category: "API Development"
   },
   {
-    title: "ANAPEC Job Market Analytics Platform",
-    description: "Built comprehensive data scraping and analysis pipelines covering 100,000+ Moroccan job listings for the National Agency for Promoted Employment (ANAPEC). Implemented machine learning models for skill extraction and job classification using BERT, GPT, and LLaMA architectures. Designed ETL pipelines with Apache Airflow, KNIME, Pentaho, and Talend for scalable data processing and transformation.",
-    tech: ["Python", "Scrapy", "BERT", "GPT", "LLaMA", "Natural Language Processing", "AWS", "Apache Airflow", "KNIME", "Pentaho", "Talend"],
+    title: "Data Scraping & Job Analysis Pipeline",
+    description: "Built the first data scraping and analysis pipelines covering 100,000+ Moroccan job listings. Applied BERT, GPT, and LLaMA models for skill extraction and job classification. Used Scrapy, Ruby, Python with Machine Learning, Seq2Seq, and TextRank algorithms for data processing.",
+    tech: ["Python", "Scrapy", "Ruby", "BERT", "GPT", "LLaMA", "Seq2Seq", "TextRank", "Natural Language Processing"],
     link: "#",
-    category: "Data Engineering",
-    period: "April 2022 - Present"
+    category: "Data Engineering"
   },
   {
-    title: "Insurance Document Intelligence & PII Redaction",
-    description: "Designed and deployed production-grade document intelligence system for insurance and financial documents. Implemented automated PII (Personally Identifiable Information) redaction pipeline combining LLMs, rule-based extraction, and AWS serverless architecture (Textract, Step Functions, Lambda). Enabled secure document sharing at scale while maintaining regulatory compliance for sensitive data protection.",
-    tech: ["Python", "LangChain", "FastAPI", "AWS Lambda", "S3", "Textract", "Step Functions", "LLMs", "RAG", "Rule-based Extraction"],
+    title: "Insurance AI Assistant - DXC Technology",
+    description: "Production document Q&A system on AWS with hybrid retrieval and reranking. Automated PII redaction for insurance/financial documents using LLMs (Claude, LLaMA, Mistral) and AWS serverless architecture. Extended into an agentic AI workflow on AWS Lambda and S3.",
+    tech: ["Python", "LangChain", "FastAPI", "AWS Lambda", "S3", "Claude", "LLaMA", "Mistral", "LLMs", "RAG"],
     link: "#",
-    category: "Generative AI",
-    period: "January 2024 - Present"
+    category: "Generative AI"
   },
   {
-    title: "Production RAG System with Hybrid Search",
-    description: "Architected and optimized a production Retrieval-Augmented Generation system featuring hybrid search capabilities combining dense and sparse retrieval methods with cross-encoder reranking. Achieved 10-second reduction in response latency and 20% improvement in output accuracy through sophisticated prompt engineering and retrieval optimization. Built the first agentic flow POC enabling dynamic LLM tool invocation.",
-    tech: ["Python", "LangChain", "FastAPI", "RAG", "Hybrid Search", "Cross-Encoder", "Vector Embeddings", "Prompt Engineering", "LLMs"],
+    title: "Excel Parsing & Semantic Embedding - DXC Technology",
+    description: "Designed and implemented an Excel parsing and semantic embedding pipeline to feed structured data into LLM applications. Built automated Power BI dashboards for executive reporting and created embeddings for structured data ingestion.",
+    tech: ["Python", "LangChain", "Semantic Search", "Vector Embeddings", "Power BI", "Excel Processing"],
     link: "#",
-    category: "Generative AI",
-    period: "January 2024 - Present"
+    category: "Generative AI"
   },
   {
-    title: "Darija Conversational Banking Assistant",
-    description: "Won the national Fintech Catalyst challenge by building a Darija-dialect conversational banking assistant for Moroccan clients. Implemented custom NLP models using RASA framework with specialized language processing for Moroccan Arabic dialect. Deployed French and Arabic transcription models achieving 95% accuracy, integrated into a banking app serving thousands of users.",
-    tech: ["RASA", "Python", "NLP", "Machine Learning", "French", "Arabic", "Darija", "Banking AI"],
+    title: "AI & NLP Projects - Digital Place",
+    description: "End-to-end AI use cases in insurance: prediction, scoring, and document intelligence. Active R&D on frontier LLM techniques and agentic architectures, presenting new AI use cases to clients. Built Airflow ETL pipelines processing 500,000+ job postings with BERT, GPT, LLaMA models.",
+    tech: ["Python", "Machine Learning", "NLP", "Generative AI", "Hugging Face", "MLflow", "Airflow", "BERT", "GPT", "LLaMA"],
     link: "#",
-    category: "Conversational AI",
-    period: "October 2021 - December 2023"
+    category: "AI/ML"
   },
   {
     title: "Portfolio System",
-    description: "Comprehensive portfolio management system with multiple MVPs demonstrating Data & AI value creation. Monorepo architecture showcasing scalable cloud-native applications across multiple business domains including Value Lab (churn prediction), Care Intent (multilingual assistants), Ops Copilot (knowledge management), and Doc Factory (document intelligence).",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "FastAPI", "Docker", "Microservices"],
+    description: "Comprehensive portfolio management system with multiple MVPs. Monorepo architecture demonstrating Data & AI value creation across multiple domains including Value Lab, Care Intent, Ops Copilot, and Doc Factory.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "FastAPI", "Docker"],
     link: "https://portfolio-system.vercel.app",
-    category: "Full Stack",
-    period: "2024 - Present"
+    category: "Full Stack"
   }
 ];
 
@@ -88,7 +82,7 @@ export default function Home() {
           >
             <p className="text-lg max-w-2xl mx-auto text-gray-500 dark:text-gray-400 mb-8">
               5+ years of experience building production AI systems, data pipelines, and full-stack applications.
-              Specializing in Generative AI, LLMs, agentic workflows, RAG systems, and MLOps for enterprise clients in banking, insurance, and fintech.
+              Specializing in Generative AI, LLMs, agentic workflows, and MLOps.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -153,9 +147,6 @@ export default function Home() {
                     <h3 className="text-2xl md:text-3xl font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-sm text-gray-400 dark:text-gray-500 mt-2">
-                      {project.period}
-                    </p>
                   </div>
                   <Link
                     href={project.link}
@@ -167,7 +158,7 @@ export default function Home() {
                     </svg>
                   </Link>
                 </div>
-                <p className="text-gray-600 dark:text-gray-300 mb-6 text-lg leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 mb-6 text-lg">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -206,7 +197,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            {["Next.js", "TypeScript", "React", "Python", "FastAPI", "Tailwind CSS", "PostgreSQL", "Docker", "Vercel", "AWS", "LangChain", "Hugging Face", "LLMs", "RAG", "Generative AI", "MLOps", "Machine Learning", "NLP", "RASA", "Scikit-learn", "PyTorch", "TensorFlow", "Apache Airflow", "GraphQL", "Redis", "MongoDB", "Neo4j"].map((tech, i) => (
+            {["Next.js", "TypeScript", "React", "Python", "FastAPI", "Tailwind CSS", "PostgreSQL", "Docker", "Vercel", "AWS", "LangChain", "Hugging Face", "LLMs", "RAG", "Generative AI", "MLOps", "Machine Learning", "NLP"].map((tech, i) => (
               <motion.div
                 key={tech}
                 whileHover={{ scale: 1.1, backgroundColor: "#3b82f6", color: "white" }}
@@ -266,7 +257,7 @@ export default function Home() {
           <div className="flex justify-center gap-6">
             <Link href="#" className="hover:text-blue-600 dark:hover:text-blue-400">GitHub</Link>
             <Link href="#" className="hover:text-blue-600 dark:hover:text-blue-400">LinkedIn</Link>
-            <Link href="mailto:omar.nouiri98@gmail.com" className="hover:text-blue-600 dark:hover:text-blue-400">Email</Link>
+            <Link href="#" className="hover:text-blue-600 dark:hover:text-blue-400">Email</Link>
           </div>
         </motion.div>
       </footer>
