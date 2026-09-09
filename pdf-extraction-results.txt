@@ -1,0 +1,143 @@
+﻿Parsing PDFs...
+
+
+=== 209022 CV_FR_Omar NOUIRI.pdf ===
+
+Done with 209022 CV_FR_Omar NOUIRI.pdf
+Relevant content found:
+STACK DEVELOPER / DATA MINER
+DOMAINES DE COMPETENCES
+Transformation et projection des donn├⌐e
+ipl├┤me approfondi de langue fran├ºaise
+Institut Fran├ºaise de Tanger
+Stack Developer / Data Miner
+EXPERIENCES PROFESSIONNELLES
+Dans le cadre de sa veille concernant le march├⌐ de lΓÇÖemploi, lΓÇÖANAPEC souhaite
+G├⌐n├⌐ration du jeu de donn├⌐e anglais et fran├ºais des comp├⌐tences.
+Stack Developer / Data Miner
+Consultant WhatsApp Business API
+Conception et d├⌐veloppement des API Backend
+Drupal, Spring boot, React.js, WATI, Ultramsg,
+Conception et d├⌐veloppement de lΓÇÖAPI liant WhatsApp au CRM
+Consultant WhatsApp business API
+Stack Developer / Data Miner
+nception des API pour lΓÇÖinteraction avec ΓÇÿGoogle drive APIΓÇÖ
+D├⌐veloppement des alertes mail cot├⌐ serveur
+React Native, GraphQL, Expo, Node.js, Strapi, Linux, MySQL, Jira
+Assistance ├á la conception de lΓÇÖentrep├┤t de donn├⌐es (Data Wharehouse)
+Stack Developer / Data Miner
+Strapi, Linux, MySQL, Jira
+the Bridge est une soci├⌐t├⌐ de conseil en innovation travaillant ├á lΓÇÖintersection des
+Scrapy, Ruby, Python, Machine Learning, Seq2Seq, TextRank,
+PEC souhaite disposer,
+Pouvoir effectuer des projections du march├⌐ de lΓÇÖemploi dans le futur proche selon
+Stack Developer / Data Miner
+Elaboration des algorithmes de projection.
+Stack Developer / Data Miner
+, Zoom, Meet, MS Project
+
+=== ceckme.pdf ===
+
+Done with ceckme.pdf
+Relevant content found:
+
+
+=== Fiche de poste_Data scientist Senior.pdf ===
+
+Done with Fiche de poste_Data scientist Senior.pdf
+Relevant content found:
+
+
+=== Omar_Nouiri_AI_Consultant_CV.pdf ===
+
+Done with Omar_Nouiri_AI_Consultant_CV.pdf
+Relevant content found:
+
+
+=== Omar_Nouiri_CV_Senior_DataScientist_EN.pdf ===
+
+Done with Omar_Nouiri_CV_Senior_DataScientist_EN.pdf
+Relevant content found:
+Senior Data Scientist  |  AI & MLOps  |  NLP & Generative AI
+omar.nouiri98@gmail.com  |  +212 6 20 21 79 30  |  Tangier, Morocco
+Open to relocation worldwide  |  Available immediately
+Senior Data Scientist with 4+ years of experience developing and industrialising AI models in production,
+generative architectures, and MLOps, with a stron
+cases. Comfortable working autonomously and communicating complex AI concepts to non
+Python, SQL, JavaScript
+Hugging Face, LangChain, FastAPI, RASA
+MLflow, Docker, Apache Airflow, CI/CD
+(Bitbucket), AWS (Lambda, S3, Textract, Step
+MySQL, PostgreSQL, MongoDB, SQLite, Neo4j
+ETL Pipelines (Airflow, KNIME, Pentaho, Talend)
+PROFESSIONAL EXPERIENCE
+Data Scientist / ML Engineer
+end AI use cases in insurance: prediction, scoring, document intelligence
+from conception to production on AWS
+Designed and delivered a PII redaction pipeline for insurance and financial documents (names, emails,
+based extraction, and AWS serverless architecture
+Active R&D on frontier LLM techniques and agentic architectures; presented new AI use cases to
+Built Airflow ETL pipelines processing 500,000+ job postings; applied BERT, GPT, LLaMA for
+clients on deployed AI solutions; built automated Power BI dashboards for executive
+Built the first data scraping and analysis pipelines covering 100,000+ Moroccan job listings
+Insurance AI Assistant
+Production document Q&A system on AWS; hybrid retrieval, reranking, extended into an agentic
+Automated redaction of personal data on insurance/financial documents via LLMs + rules + AWS
+Automated Airflow pipelines processing 500K+ job postings; classification & skill extraction models;
+
+=== Omar_Nouiri_Resume.pdf ===
+
+Done with Omar_Nouiri_Resume.pdf
+Relevant content found:
+
+
+=== Omar_Nouiri_Resume_ATS_Master.pdf ===
+
+Done with Omar_Nouiri_Resume_ATS_Master.pdf
+Relevant content found:
+Senior Data Scientist | AI / Machine Learning Engineer | Generative AI, LLM & RAG Systems
+Settat, Morocco | +212 620 217 930 | omar.nouiri98@gmail.com | linkedin.com/in/omar
+Senior Data Scientist and AI/ML Engineer with 5+ years of experience designing and deploying production
+Generative AI, NLP, and machine learning systems for enterprise clients in banking, insurance, and fintech. Deep hands
+ugmented Generation (RAG), LLM integration, agentic AI workflows, prompt engineering, and
+based MLOps on AWS and GCP. Proven track record improving system accuracy, reducing latency, and scaling
+data pipelines processing hundreds of thousands of reco
+Generative AI and LLMs:
+4, LLaMA, Claude, Mistral, LangChain, RAG (Retrieval
+Engineering, Agentic AI Workflows, Vector Search, Semantic Embeddings
+Hugging Face Transformers, MLOps, MLflow, AWS SageMaker
+Summarization, Translation, Seq2Seq, Language Modeling, Conversational AI (RASA), spaCy, NLTK
+AWS (Lambda, S3, SageMaker, Textract), Google Cloud Platform (GCP), Docker, Apache
+Airflow, Git, GitHub, Bitbucket, CI/CD
+ETL Pipelines, Data Pipelines, Web Scraping, Data Cleaning and Transformation, Data Governance,
+Data Privacy and Security, SQL
+MySQL, PostgreSQL, MongoDB, SQLite, Neo4j
+Python, SQL, JavaScript
+PROFESSIONAL EXPERIENCE
+Senior Data Scientist / AI Consultant, DXC Technology
+Lead AI/ML advisory engagements for enterprise insurance clients, defining Generative AI roadmaps and agentic AI
+Designed and deployed agentic AI workflows on AWS (Lambda, S3), delivering proofs of concept that translated client
+based image and graph data extraction.
+Designed and implemented an Excel parsing and semantic embedding pipeline to feed structured data into
+source models), shaping enterprise
+Generative AI strategy.
+Data Scientist / AI Consultant, DXC Technology
+Consulted on generative AI strategy for enterprise insurance clients, translating business requirements into LLM
+Developed and maintained production MLOps pipelines for model deployment, monitoring, and versioning on AWS.
+Data Scientist, AI and NLP Projects, Digital Place
+
+=== Profile.pdf ===
+
+Done with Profile.pdf
+Relevant content found:
+omar.nouiri98@gmail.com
+Data scientist / GenAI / ML engineer
+Senior AI/ML Consultant
+
+=== VF_CV_NOUIRI_OMAR.pdf ===
+
+Done with VF_CV_NOUIRI_OMAR.pdf
+Relevant content found:
+
+
+--- Parsing complete! ---
