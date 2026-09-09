@@ -80,7 +80,7 @@ export default function Home() {
             transition={{ duration: 0.7, delay: 0.4 }}
           >
             Senior AI/ML Consultant & Full Stack Developer
-          </motion.h1>
+          </motion.p>
           <motion.div
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
