@@ -5,39 +5,46 @@ import Link from "next/link";
 
 const projects = [
   {
-    title: "Value Lab MVP",
-    description: "Advanced churn prediction and campaign value simulation platform. Multi-country telco customer analytics with FastAPI backend and Next.js frontend. Features EDA, model training, customer scoring, and value simulation.",
-    tech: ["Next.js", "Python", "FastAPI", "PostgreSQL", "scikit-learn", "Pandas"],
-    link: "https://portfolio-system.vercel.app/apps/mvp-01-value-lab",
-    image: "/mvp1.png"
+    title: "WhatsApp Business API Integration",
+    description: "Conception and development of API Backend integrating WhatsApp with CRM systems. Built API solutions for WhatsApp Business API using Drupal, Spring Boot, React.js, WATI, and Ultramsg for seamless customer communication.",
+    tech: ["Python", "FastAPI", "React.js", "GraphQL", "Expo", "Strapi", "MySQL"],
+    link: "#",
+    category: "API Development"
   },
   {
-    title: "Care Intent MVP",
-    description: "Healthcare communication platform for patient engagement. Multilingual intent classification system with RAG-based knowledge retrieval.",
-    tech: ["React", "Node.js", "Python", "RAG", "Transformers"],
-    link: "https://portfolio-system.vercel.app/apps/mvp-02-care-intent",
-    image: "/mvp2.png"
+    title: "Data Scraping & Job Analysis Pipeline",
+    description: "Built the first data scraping and analysis pipelines covering 100,000+ Moroccan job listings. Applied BERT, GPT, and LLaMA models for skill extraction and job classification.",
+    tech: ["Python", "Scrapy", "BERT", "GPT", "LLaMA", "Natural Language Processing", "AWS"],
+    link: "#",
+    category: "Data Engineering"
   },
   {
-    title: "Ops Copilot MVP",
-    description: "Operational assistant with AI-powered insights and automation. Knowledge copilot for operations teams with document intelligence capabilities.",
-    tech: ["AI/ML", "Python", "Docker", "Kubernetes", "FastAPI"],
-    link: "https://portfolio-system.vercel.app/apps/mvp-03-ops-copilot",
-    image: "/mvp3.png"
+    title: "Insurance AI Assistant",
+    description: "Designed and deployed production document Q&A system on AWS with hybrid retrieval and reranking. Automated PII redaction for insurance/financial documents using LLMs and AWS serverless architecture.",
+    tech: ["Python", "LangChain", "FastAPI", "AWS Lambda", "S3", "LLMs", "RAG"],
+    link: "#",
+    category: "Generative AI"
   },
   {
-    title: "Doc Factory MVP",
-    description: "Document generation and processing pipeline. Automated document compliance and intelligence system for enterprise workflows.",
-    tech: ["Node.js", "PDF Generation", "Cloud Services", "OCR"],
-    link: "https://portfolio-system.vercel.app/apps/mvp-04-doc-factory",
-    image: "/mvp4.png"
+    title: "Excel Parsing & Semantic Embedding Pipeline",
+    description: "Designed and implemented an Excel parsing and semantic embedding pipeline to feed structured data into LLM applications. Built automated Power BI dashboards for executive reporting.",
+    tech: ["Python", "LangChain", "Semantic Search", "Vector Embeddings", "Power BI"],
+    link: "#",
+    category: "Generative AI"
+  },
+  {
+    title: "AI & ML Projects - Digital Place",
+    description: "Developed end-to-end AI use cases in insurance: prediction, scoring, and document intelligence. Active R&D on frontier LLM techniques and agentic architectures, presenting new AI use cases to clients.",
+    tech: ["Python", "Machine Learning", "NLP", "Generative AI", "Hugging Face", "MLflow"],
+    link: "#",
+    category: "AI/ML"
   },
   {
     title: "Portfolio System",
-    description: "Comprehensive portfolio management system with multiple MVPs. Monorepo architecture demonstrating Data & AI value creation across multiple domains.",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "Docker"],
+    description: "Comprehensive portfolio management system with multiple MVPs. Monorepo architecture demonstrating Data & AI value creation across multiple domains including Value Lab, Care Intent, Ops Copilot, and Doc Factory.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "FastAPI", "Docker"],
     link: "https://portfolio-system.vercel.app",
-    image: "/portfolio.png"
+    category: "Full Stack"
   }
 ];
 
@@ -72,7 +79,7 @@ export default function Home() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.4 }}
           >
-            Developer & Creator of Portfolio System
+            Senior AI/ML Consultant & Full Stack Developer
           </motion.p>
           <motion.div
             initial={{ y: 30, opacity: 0 }}
@@ -80,7 +87,8 @@ export default function Home() {
             transition={{ duration: 0.7, delay: 0.6 }}
           >
             <p className="text-lg max-w-2xl mx-auto text-gray-500 dark:text-gray-400 mb-8">
-              Building innovative solutions across multiple domains including data analytics, healthcare, operations, and document processing.
+              5+ years of experience building production AI systems, data pipelines, and full-stack applications.
+              Specializing in Generative AI, LLMs, agentic workflows, and MLOps.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -138,9 +146,14 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
               >
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-                  <h3 className="text-2xl md:text-3xl font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    {project.title}
-                  </h3>
+                  <div>
+                    <span className="inline-block px-3 py-1 text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 rounded-full mb-3">
+                      {project.category}
+                    </span>
+                    <h3 className="text-2xl md:text-3xl font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      {project.title}
+                    </h3>
+                  </div>
                   <Link
                     href={project.link}
                     className="flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-blue-600 dark:hover:text-blue-400"
@@ -190,7 +203,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            {["Next.js", "TypeScript", "React", "Python", "FastAPI", "Tailwind CSS", "PostgreSQL", "Docker", "Vercel", "scikit-learn", "Pandas", "RAG", "AI/ML"].map((tech, i) => (
+            {["Next.js", "TypeScript", "React", "Python", "FastAPI", "Tailwind CSS", "PostgreSQL", "Docker", "Vercel", "AWS", "LangChain", "Hugging Face", "LLMs", "RAG", "Generative AI", "MLOps", "Machine Learning", "NLP"].map((tech, i) => (
               <motion.div
                 key={tech}
                 whileHover={{ scale: 1.1, backgroundColor: "#3b82f6", color: "white" }}
@@ -200,6 +213,40 @@ export default function Home() {
               </motion.div>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-20 px-6 md:px-12 bg-gradient-to-br from-blue-500 to-purple-600 text-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.h2
+            className="text-3xl md:text-4xl font-bold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Let's Work Together
+          </motion.h2>
+          <motion.p
+            className="text-xl mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Ready to build innovative AI and full-stack solutions?
+          </motion.p>
+          <motion.a
+            href="mailto:omar.nouiri98@gmail.com"
+            className="inline-block px-8 py-4 bg-white text-blue-600 rounded-full font-medium hover:scale-105 transition-transform"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            Contact Me
+          </motion.a>
         </div>
       </section>
 
