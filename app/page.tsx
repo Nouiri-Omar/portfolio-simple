@@ -65,6 +65,8 @@ export default function Home() {
             <Link href="#book" className="hover:text-[#64ffda] transition-colors">Projects</Link>
             <Link href="#tech" className="hover:text-[#64ffda] transition-colors">Tech Stack</Link>
             <Link href="#contact" className="hover:text-[#64ffda] transition-colors">Contact</Link>
+            <Link href="https://github.com/Nouiri-Omar" target="_blank" className="hover:text-[#64ffda] transition-colors">GitHub</Link>
+            <Link href="https://linkedin.com/in/omar-nouiri" target="_blank" className="hover:text-[#64ffda] transition-colors">LinkedIn</Link>
           </div>
         </div>
       </nav>
@@ -312,8 +314,8 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center text-[#8892b0]">
           <p className="mb-4">© {new Date().getFullYear()} Omar Nouiri. All rights reserved.</p>
           <div className="flex justify-center gap-6">
-            <Link href="#" className="hover:text-[#64ffda] transition-colors">GitHub</Link>
-            <Link href="#" className="hover:text-[#64ffda] transition-colors">LinkedIn</Link>
+            <Link href="https://github.com/Nouiri-Omar" target="_blank" className="hover:text-[#64ffda] transition-colors">GitHub</Link>
+            <Link href="https://linkedin.com/in/omar-nouiri" target="_blank" className="hover:text-[#64ffda] transition-colors">LinkedIn</Link>
             <Link href="mailto:omar.nouiri98@gmail.com" className="hover:text-[#64ffda] transition-colors">Email</Link>
           </div>
         </div>
