@@ -5,6 +5,13 @@ import Link from "next/link";
 
 const projects = [
   {
+    title: "PRODIGE ANAPEC Labor Market Observatory",
+    description: "Implementation of Dataiku DSS-based MVP for national labor market analysis. Built end-to-end pipeline ingesting 500,000+ job offers from Scrapy web scraping with MySQL structured data. Used Dataiku Flow with Visual Prepare Recipes, Python Code Environments with PyTorch/spaCy/transformers for BERT and RNN-seq2Seq skill extraction, and containerized execution on Kubernetes with GPU allocation. Implemented Metrics & Checks for data quality, automated Scenario triggering, and created Application Template for regional replication across MEA countries.",
+    tech: ["Dataiku DSS", "Python", "PyTorch", "spaCy", "Transformers", "BERT", "RNN", "Seq2Seq", "Kubernetes", "Docker", "MySQL", "S3"],
+    link: "#",
+    category: "Data Science Platform"
+  },
+  {
     title: "WhatsApp Business API Integration",
     description: "Conception and development of API Backend integrating WhatsApp with CRM systems. Built API solutions for WhatsApp Business API using Drupal, Spring Boot, React.js, WATI, and Ultramsg for seamless customer communication.",
     tech: ["Python", "FastAPI", "React.js", "GraphQL", "Expo", "Strapi", "MySQL"],
