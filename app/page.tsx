@@ -438,6 +438,7 @@ export default function Home() {
           <div className="flex justify-center gap-6">
             <Link href="#" className="hover:text-[#64ffda] transition-colors">GitHub</Link>
             <Link href="#" className="hover:text-[#64ffda] transition-colors">LinkedIn</Link>
+            <Link href="https://www.kaggle.com/omarnouiri" className="hover:text-[#64ffda] transition-colors">Kaggle</Link>
             <Link href="mailto:omar.nouiri98@gmail.com" className="hover:text-[#64ffda] transition-colors">Email</Link>
           </div>
         </div>
