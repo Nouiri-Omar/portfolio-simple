@@ -773,6 +773,14 @@ body {
   overflow: hidden;
 }
 
+.visible-page > .spread-page,
+.visible-page > .cover-page,
+.visible-page > .back-cover-page,
+.visible-page > .empty-page {
+  width: 100%;
+  height: 100%;
+}
+
 .single-page-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
