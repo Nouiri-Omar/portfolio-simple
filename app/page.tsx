@@ -106,12 +106,39 @@ function CoverPage() {
   return <article className="cover-page"><div className="cover-seal">ON</div><p className="cover-imprint">Selected work / 2021-2025</p><h1>Omar Nouiri</h1><p className="cover-role">Senior AI/ML Consultant<br />Data Scientist · Full-stack builder</p><div className="cover-rule" /><p className="cover-note">A portfolio in chapters</p><p className="cover-open">Scroll to open the book ↓</p></article>;
 }
 
-function PrefacePage() {
-  return <div className="spread preface-spread"><article className="spread-page spread-copy"><div className="page-number">01</div><p className="spread-kicker">Preface</p><h2>Building useful intelligence.</h2><p className="summary">This book gathers selected work across generative AI, document intelligence, NLP, data engineering, and product delivery. Each chapter follows a problem from its first question to a system people can use.</p><p className="preface-signoff">Omar Nouiri<br /><span>Tangier, Morocco</span></p></article><article className="spread-page preface-note"><div className="page-number">02</div><span className="preface-mark">✦</span><p>AI / ML / PRODUCT / NLP</p><small>Turn the page to explore the work.</small></article></div>;
+function PrefaceLeft() {
+  return <article className="spread-page spread-copy"><div className="page-number">01</div><p className="spread-kicker">Preface</p><h2>Building useful intelligence.</h2><p className="summary">This book gathers selected work across generative AI, document intelligence, NLP, data engineering, and product delivery. Each chapter follows a problem from its first question to a system people can use.</p><p className="preface-signoff">Omar Nouiri<br /><span>Tangier, Morocco</span></p></article>;
+}
+
+function PrefaceRight() {
+  return <article className="spread-page preface-note"><div className="page-number">02</div><span className="preface-mark">✦</span><p>AI / ML / PRODUCT / NLP</p><small>Turn the page to explore the work.</small></article>;
+}
+
+function ProjectLeft({ project, index }: { project: Project; index: number }) {
+  return <article className="spread-page spread-copy"><div className="page-number">{String(index * 2 + 3).padStart(2, "0")}</div><div className="page-topline"><span className="role-pill">{project.role}</span></div><p className="spread-kicker">{project.category} / {project.period}</p><h2>{project.title}</h2><p className="summary">{project.summary}</p><div className="chip-row">{project.tech.map((item) => <span key={item} className="chip">{item}</span>)}</div><div className="spread-footer">{project.link ? <a href={project.link} target="_blank" rel="noreferrer" className="footnote-link">View live project ↗</a> : <span className="footnote-link muted-text">Live link pending</span>}<span className="spread-company">{project.company}</span></div></article>;
+}
+
+function ProjectRight({ project, index }: { project: Project; index: number }) {
+  return <article className="spread-page spread-media"><div className="page-number">{String(index * 2 + 4).padStart(2, "0")}</div><div className="media-plate" style={{ background: `linear-gradient(135deg, ${project.palette[0]}, ${project.palette[1]} 55%, ${project.palette[2]})` }}><div className="plate-frame"><span>{project.category}</span><strong>Project illustration</strong><small>A representative image or product screenshot belongs here.</small></div></div><div className="media-caption"><span>Plate {String(index + 1).padStart(2, "0")}</span><span>Image / video insert pending</span></div></article>;
 }
 
 function ProjectSpread({ project, index }: { project: Project; index: number }) {
-  return <div className="spread" aria-label={`Project ${index + 1}: ${project.title}`}><article className="spread-page spread-copy"><div className="page-number">{String(index * 2 + 3).padStart(2, "0")}</div><div className="page-topline"><span className="role-pill">{project.role}</span></div><p className="spread-kicker">{project.category} / {project.period}</p><h2>{project.title}</h2><p className="summary">{project.summary}</p><div className="chip-row">{project.tech.map((item) => <span key={item} className="chip">{item}</span>)}</div><div className="spread-footer">{project.link ? <a href={project.link} target="_blank" rel="noreferrer" className="footnote-link">View live project ↗</a> : <span className="footnote-link muted-text">Live link pending</span>}<span className="spread-company">{project.company}</span></div></article><article className="spread-page spread-media"><div className="page-number">{String(index * 2 + 4).padStart(2, "0")}</div><div className="media-plate" style={{ background: `linear-gradient(135deg, ${project.palette[0]}, ${project.palette[1]} 55%, ${project.palette[2]})` }}><div className="plate-frame"><span>{project.category}</span><strong>Project illustration</strong><small>A representative image or product screenshot belongs here.</small></div></div><div className="media-caption"><span>Plate {String(index + 1).padStart(2, "0")}</span><span>Image / video insert pending</span></div></article></div>;
+  return <div className="spread" aria-label={`Project ${index + 1}: ${project.title}`}><ProjectLeft project={project} index={index} /><ProjectRight project={project} index={index} /></div>;
+}
+
+function PageContent({ page }: { page: number }) {
+  if (page === 0) return <CoverPage />;
+  if (page === 1) return <div className="spread"><PrefaceLeft /><PrefaceRight /></div>;
+  if (page === projects.length + 2) return <BackCoverPage />;
+  const projectIndex = page - 2;
+  return <ProjectSpread project={projects[projectIndex]} index={projectIndex} />;
+}
+
+function PageFace({ page, side }: { page: number; side: "left" | "right" }) {
+  if (page === 0 || page === projects.length + 2) return <PageContent page={page} />;
+  if (page === 1) return side === "left" ? <PrefaceLeft /> : <PrefaceRight />;
+  const projectIndex = page - 2;
+  return side === "left" ? <ProjectLeft project={projects[projectIndex]} index={projectIndex} /> : <ProjectRight project={projects[projectIndex]} index={projectIndex} />;
 }
 
 function BackCoverPage() {
@@ -120,14 +147,25 @@ function BackCoverPage() {
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(0);
+  const [turningPage, setTurningPage] = useState<number | null>(null);
   const [direction, setDirection] = useState(1);
   const totalPages = projects.length + 3;
-  const turnPage = (step: number) => setCurrentPage((page) => { const next = Math.max(0, Math.min(totalPages - 1, page + step)); if (next !== page) setDirection(step > 0 ? 1 : -1); return next; });
+  const turnPage = (step: number) => {
+    if (turningPage !== null) return;
+    const next = Math.max(0, Math.min(totalPages - 1, currentPage + step));
+    if (next === currentPage) return;
+    setDirection(step > 0 ? 1 : -1);
+    setTurningPage(next);
+    window.setTimeout(() => {
+      setCurrentPage(next);
+      setTurningPage(null);
+    }, 720);
+  };
 
   useEffect(() => {
     let locked = false;
     let touchStartY = 0;
-    const onWheel = (event: WheelEvent) => { event.preventDefault(); if (locked || Math.abs(event.deltaY) < 8) return; locked = true; turnPage(event.deltaY > 0 ? 1 : -1); window.setTimeout(() => { locked = false; }, 700); };
+    const onWheel = (event: WheelEvent) => { event.preventDefault(); if (locked || Math.abs(event.deltaY) < 8) return; locked = true; turnPage(event.deltaY > 0 ? 1 : -1); window.setTimeout(() => { locked = false; }, 760); };
     const onKeyDown = (event: KeyboardEvent) => { if (["ArrowRight", "ArrowDown", " "].includes(event.key)) { event.preventDefault(); turnPage(1); } if (["ArrowLeft", "ArrowUp"].includes(event.key)) { event.preventDefault(); turnPage(-1); } };
     const onTouchStart = (event: TouchEvent) => { touchStartY = event.changedTouches[0].clientY; };
     const onTouchEnd = (event: TouchEvent) => { const delta = touchStartY - event.changedTouches[0].clientY; if (Math.abs(delta) > 42) turnPage(delta > 0 ? 1 : -1); };
@@ -135,5 +173,5 @@ export default function Home() {
     return () => { window.removeEventListener("wheel", onWheel); window.removeEventListener("keydown", onKeyDown); window.removeEventListener("touchstart", onTouchStart); window.removeEventListener("touchend", onTouchEnd); };
   });
 
-  return <main className="portfolio-book book-reader"><div className="reader-chrome"><span className="brand-lockup"><span className="brand-mark">ON</span> Omar Nouiri</span><span className="reader-progress">{String(currentPage + 1).padStart(2, "0")} / {String(totalPages).padStart(2, "0")}</span></div><section className="book-stage" aria-label="Omar Nouiri portfolio book"><div className="book-object"><div className="book-spine" /><AnimatePresence initial={false} custom={direction} mode="wait"><motion.div key={currentPage} className="active-book-page" initial={{ rotateY: direction > 0 ? 82 : -82, opacity: 0 }} animate={{ rotateY: 0, opacity: 1 }} exit={{ rotateY: direction > 0 ? -82 : 82, opacity: 0 }} transition={{ duration: 0.62, ease: [0.22, 0.61, 0.36, 1] }}>{currentPage === 0 && <CoverPage />}{currentPage === 1 && <PrefacePage />}{currentPage > 1 && currentPage < totalPages - 1 && <ProjectSpread project={projects[currentPage - 2]} index={currentPage - 2} />}{currentPage === totalPages - 1 && <BackCoverPage />}</motion.div></AnimatePresence><button className="page-corner page-corner-left" onClick={() => turnPage(-1)} aria-label="Previous page">‹</button><button className="page-corner page-corner-right" onClick={() => turnPage(1)} aria-label="Next page">›</button></div></section><p className="reader-hint">Scroll or use ← → to turn the pages</p></main>;
+  return <main className="portfolio-book book-reader"><div className="reader-chrome"><span className="brand-lockup"><span className="brand-mark">ON</span> Omar Nouiri</span><span className="reader-progress">{String(currentPage + 1).padStart(2, "0")} / {String(totalPages).padStart(2, "0")}</span></div><section className="book-stage" aria-label="Omar Nouiri portfolio book"><div className="book-object"><div className="book-spine" /><div className="book-underlay"><PageContent page={turningPage ?? currentPage} /></div>{turningPage !== null && <AnimatePresence initial={false}><motion.div className={`turning-sheet ${direction > 0 ? "turn-forward" : "turn-backward"}`} initial={{ rotateY: 0 }} animate={{ rotateY: direction > 0 ? -180 : 180 }} transition={{ duration: 0.72, ease: [0.22, 0.61, 0.36, 1] }}><div className="sheet-face sheet-front">{direction > 0 ? <PageFace page={currentPage} side="right" /> : <PageFace page={currentPage} side="left" />}</div><div className="sheet-face sheet-back">{direction > 0 ? <PageFace page={turningPage} side="left" /> : <PageFace page={turningPage} side="right" />}</div><div className="sheet-shadow" /></motion.div></AnimatePresence>}</div><button className="page-corner page-corner-left" onClick={() => turnPage(-1)} aria-label="Previous page">‹</button><button className="page-corner page-corner-right" onClick={() => turnPage(1)} aria-label="Next page">›</button></section><p className="reader-hint">Scroll or use ← → to turn the pages</p></main>;
 }

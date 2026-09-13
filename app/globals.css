@@ -721,12 +721,75 @@ body {
   pointer-events: none;
 }
 
-.active-book-page {
+.book-underlay {
   position: absolute;
   inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: 8px 25px 25px 8px;
+}
+
+.book-underlay > .cover-page,
+.book-underlay > .back-cover-page,
+.book-underlay > .spread {
+  height: 100%;
+}
+
+.turning-sheet {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  width: 50%;
   transform-style: preserve-3d;
+  backface-visibility: visible;
+  pointer-events: none;
+}
+
+.turn-forward {
+  left: 50%;
   transform-origin: left center;
+}
+
+.turn-backward {
+  left: 0;
+  transform-origin: right center;
+}
+
+.sheet-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
   backface-visibility: hidden;
+  background: #fffaf0;
+  box-shadow: inset 12px 0 20px rgba(72, 42, 22, 0.12);
+}
+
+.sheet-face > .spread-page,
+.sheet-face > .cover-page,
+.sheet-face > .back-cover-page {
+  width: 100%;
+  height: 100%;
+}
+
+.sheet-back {
+  transform: rotateY(180deg);
+  box-shadow: inset -12px 0 20px rgba(72, 42, 22, 0.12);
+}
+
+.sheet-shadow {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  opacity: 0;
+  background: linear-gradient(90deg, rgba(34, 15, 8, 0.35), transparent 35%, rgba(34, 15, 8, 0.08));
+  pointer-events: none;
+  animation: page-shadow 720ms ease-in-out forwards;
+}
+
+@keyframes page-shadow {
+  0%, 100% { opacity: 0; }
+  48% { opacity: 0.75; }
 }
 
 .cover-page,
