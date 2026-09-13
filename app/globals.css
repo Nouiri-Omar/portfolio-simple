@@ -734,14 +734,12 @@ body {
 }
 
 .closed-book .book-underlay {
-  left: 50%;
-  right: auto;
-  width: 50%;
+  inset: 0;
 }
 
 .closed-book::before,
 .closed-book::after {
-  left: 50%;
+  left: 0;
 }
 
 .book-underlay {
@@ -757,6 +755,22 @@ body {
 .book-underlay > .spread,
 .book-underlay > .single-page-layout {
   height: 100%;
+}
+
+.visible-spread {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: #6f4b2b;
+}
+
+.visible-page {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .single-page-layout {
@@ -795,8 +809,8 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 50%;
-  width: 50%;
+  left: 0;
+  width: 100%;
   z-index: 10;
   transform-origin: left center;
   transform-style: preserve-3d;
@@ -831,6 +845,11 @@ body {
 .sheet-face > .spread-page,
 .sheet-face > .cover-page,
 .sheet-face > .back-cover-page {
+  width: 100%;
+  height: 100%;
+}
+
+.sheet-face > .spread {
   width: 100%;
   height: 100%;
 }
