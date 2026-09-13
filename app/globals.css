@@ -25,7 +25,7 @@ body {
     radial-gradient(circle at top, rgba(212, 168, 87, 0.18), transparent 28%),
     linear-gradient(180deg, #f8f3eb 0%, #efe6d7 100%);
   color: var(--ink);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Georgia, "Times New Roman", serif;
 }
 
 a {
@@ -276,17 +276,55 @@ h1 {
   margin: 0 auto;
   display: grid;
   gap: 1.8rem;
+  perspective: 1600px;
 }
 
 .book-page {
+  position: relative;
   display: grid;
   grid-template-columns: 0.92fr 1.28fr;
-  background: rgba(255, 253, 249, 0.52);
-  border: 1px solid rgba(23, 23, 23, 0.08);
-  border-radius: 30px;
+  isolation: isolate;
+  transform-origin: left center;
+  background:
+    linear-gradient(90deg, rgba(116, 86, 48, 0.08), transparent 4%),
+    repeating-linear-gradient(0deg, rgba(116, 86, 48, 0.025) 0, rgba(116, 86, 48, 0.025) 1px, transparent 1px, transparent 5px),
+    var(--page);
+  border: 1px solid rgba(95, 68, 34, 0.18);
+  border-radius: 5px 18px 18px 5px;
   overflow: hidden;
   box-shadow: var(--page-shadow);
-  backdrop-filter: blur(8px);
+  will-change: transform;
+}
+
+.book-page::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0 auto 0 0;
+  width: 9px;
+  background: linear-gradient(90deg, rgba(73, 47, 20, 0.24), rgba(255, 255, 255, 0.22), transparent);
+  pointer-events: none;
+}
+
+.book-page::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 7px -8px -7px 8px;
+  border-radius: 5px 18px 18px 5px;
+  background: repeating-linear-gradient(0deg, #e7d8bf 0, #e7d8bf 2px, #f8efdf 2px, #f8efdf 4px);
+  box-shadow: 0 14px 24px rgba(76, 53, 25, 0.12);
+}
+
+.page-number {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  z-index: 3;
+  color: rgba(26, 26, 26, 0.5);
+  font-family: "Courier New", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
 }
 
 .page-visual {
@@ -345,7 +383,7 @@ h1 {
 .page-copy {
   display: flex;
   flex-direction: column;
-  padding: 1.4rem 1.5rem 1.2rem;
+  padding: 2.3rem 1.8rem 1.5rem;
 }
 
 .page-topline {
@@ -458,7 +496,9 @@ h1 {
   min-height: 150px;
   margin-top: 1rem;
   border-radius: 18px;
-  background: linear-gradient(135deg, rgba(17, 24, 39, 0.06), rgba(47, 111, 237, 0.08)),
+  flex-direction: column;
+  gap: 0.35rem;
+  background: linear-gradient(135deg, rgba(116, 86, 48, 0.06), rgba(47, 111, 237, 0.08)),
     repeating-linear-gradient(
       45deg,
       rgba(17, 24, 39, 0.04),
@@ -471,6 +511,14 @@ h1 {
   font-size: 0.82rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.video-placeholder small {
+  color: rgba(17, 24, 39, 0.5);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.78rem;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .contact-section {
@@ -537,6 +585,7 @@ h1 {
 
   .book-page {
     grid-template-columns: 1fr;
+    transform-origin: top center;
   }
 
   .page-visual {
@@ -566,5 +615,16 @@ h1 {
   .contact-links {
     flex-direction: column;
     gap: 0.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .book-page {
+    transform: none !important;
+    transition: none !important;
   }
 }

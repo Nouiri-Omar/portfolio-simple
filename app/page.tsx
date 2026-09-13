@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 type Project = {
   title: string;
@@ -12,8 +13,7 @@ type Project = {
   tech: string[];
   palette: [string, string, string];
   link?: string;
-  video?: string;
-};
+}
 
 const projects: Project[] = [
   {
@@ -27,7 +27,6 @@ const projects: Project[] = [
     tech: ["Python", "LangChain", "GPT-4", "AWS Lambda", "AWS S3", "RAG", "Hybrid Search"],
     palette: ["#0f172a", "#1d4ed8", "#7dd3fc"],
     link: "https://portfolio-simple-ebon.vercel.app/#",
-    video: "https://www.youtube.com/embed/ScMzIvxBSi4?si=J7cLm3kvvyQm9qXQ",
   },
   {
     title: "IDP / PII Extraction Pipeline",
@@ -40,7 +39,6 @@ const projects: Project[] = [
     tech: ["Python", "Amazon Textract", "AWS S3", "NER", "PII Detection", "Document Processing"],
     palette: ["#111827", "#374151", "#f59e0b"],
     link: "https://portfolio-simple-ebon.vercel.app/#",
-    video: "https://www.youtube.com/embed/tgbNymZ7vqY",
   },
   {
     title: "Multi-modal RAG Enrichment",
@@ -53,7 +51,6 @@ const projects: Project[] = [
     tech: ["Python", "Claude Haiku", "Vision LLM", "PyMuPDF", "Vector DB", "Embeddings"],
     palette: ["#172554", "#3b82f6", "#a78bfa"],
     link: "https://portfolio-simple-ebon.vercel.app/#",
-    video: "",
   },
   {
     title: "Darija Voice Bot + CNN Audio Classifier",
@@ -66,7 +63,6 @@ const projects: Project[] = [
     tech: ["Python", "PyTorch", "CNN", "MFCC", "librosa", "OpenCV", "Wav2Vec2"],
     palette: ["#1f2937", "#0ea5e9", "#22c55e"],
     link: "",
-    video: "https://www.youtube.com/embed/aqz-KE-bpKQ",
   },
   {
     title: "Darija Conversational Banking Assistant",
@@ -79,7 +75,6 @@ const projects: Project[] = [
     tech: ["Python", "RASA", "NLU", "NER", "spaCy", "NLTK", "Darija"],
     palette: ["#1e293b", "#84cc16", "#facc15"],
     link: "",
-    video: "",
   },
   {
     title: "Job Market Intelligence Platform",
@@ -92,7 +87,6 @@ const projects: Project[] = [
     tech: ["Python", "Scrapy", "Airflow", "MySQL", "Neo4j", "BERT", "PowerBI"],
     palette: ["#0f172a", "#f97316", "#facc15"],
     link: "",
-    video: "https://www.youtube.com/embed/ysz5S6PUM-U",
   },
   {
     title: "Dataiku POC — PRODIGE ANAPEC",
@@ -105,7 +99,6 @@ const projects: Project[] = [
     tech: ["Dataiku DSS", "Python", "PyTorch", "spaCy", "Transformers", "BERT", "RNN"],
     palette: ["#0f172a", "#7c3aed", "#a78bfa"],
     link: "https://portfolio-simple-ebon.vercel.app/#",
-    video: "",
   },
   {
     title: "AI-Enhanced Startup Search Engine",
@@ -118,9 +111,80 @@ const projects: Project[] = [
     tech: ["Python", "PyTorch", "RNN", "Seq2Seq", "Neo4j", "NLP", "Keyword Generation"],
     palette: ["#1f2937", "#ef4444", "#fca5a5"],
     link: "",
-    video: "",
   },
 ];
+
+function ProjectPage({ project, index }: { project: Project; index: number }) {
+  const pageRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: pageRef,
+    offset: ["start 90%", "end 10%"],
+  });
+  const rotateY = useTransform(
+    scrollYProgress,
+    [0, 0.48, 1],
+    [index % 2 ? 3 : -3, 0, index % 2 ? -3 : 3],
+  );
+  const translateY = useTransform(scrollYProgress, [0, 0.5, 1], [24, 0, -12]);
+
+  return (
+    <motion.article
+      ref={pageRef}
+      className="book-page"
+      style={{ rotateY, y: translateY }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.45 }}
+    >
+      <div className="page-number">{String(index + 1).padStart(2, "0")}</div>
+      <div
+        className="page-visual"
+        style={{
+          background: `linear-gradient(135deg, ${project.palette[0]} 0%, ${project.palette[1]} 52%, ${project.palette[2]} 100%)`,
+        }}
+      >
+        <div className="visual-glow" />
+        <div className="visual-content">
+          <span className="visual-tag">{project.category}</span>
+          <h3>{project.title}</h3>
+          <div className="visual-meta">
+            <span>{project.company}</span>
+            <span>{project.period}</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="page-copy">
+        <div className="page-topline">
+          <span className="role-pill">{project.role}</span>
+        </div>
+        <p className="summary">{project.summary}</p>
+        <div className="chip-row">
+          {project.tech.map((item) => (
+            <span key={item} className="chip">
+              {item}
+            </span>
+          ))}
+        </div>
+        <div className="project-actions">
+          {project.link ? (
+            <a href={project.link} target="_blank" rel="noreferrer" className="action primary">
+              Open project
+            </a>
+          ) : (
+            <span className="action muted">Project link pending</span>
+          )}
+          <span className="action muted">Media preview pending</span>
+        </div>
+        <div className="video-placeholder">
+          <span>Project media placeholder</span>
+          <small>Image or walkthrough video can live here</small>
+        </div>
+      </div>
+    </motion.article>
+  );
+}
 
 export default function Home() {
   const coverStats = ["5+ years", "AI/ML", "MLOps", "NLP"];
@@ -183,90 +247,7 @@ export default function Home() {
 
         <div className="book-stack">
           {projects.map((project, index) => (
-            <motion.article
-              key={project.title}
-              className="book-page"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.45, delay: index * 0.06 }}
-            >
-              <div
-                className="page-visual"
-                style={{
-                  background: `linear-gradient(135deg, ${project.palette[0]} 0%, ${project.palette[1]} 52%, ${project.palette[2]} 100%)`,
-                }}
-              >
-                <div className="visual-glow" />
-                <div className="visual-content">
-                  <span className="visual-tag">{project.category}</span>
-                  <h3>{project.title}</h3>
-                  <div className="visual-meta">
-                    <span>{project.company}</span>
-                    <span>{project.period}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="page-copy">
-                <div className="page-topline">
-                  <span className="role-pill">{project.role}</span>
-                </div>
-
-                <p className="summary">{project.summary}</p>
-
-                <div className="chip-row">
-                  {project.tech.map((item) => (
-                    <span key={item} className="chip">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="project-actions">
-                  {project.link ? (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="action primary"
-                    >
-                      Open project
-                    </a>
-                  ) : (
-                    <span className="action muted">Project link pending</span>
-                  )}
-
-                  {project.video ? (
-                    <a
-                      href={project.video}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="action secondary"
-                    >
-                      Watch video
-                    </a>
-                  ) : (
-                    <span className="action muted">Video coming soon</span>
-                  )}
-                </div>
-
-                {project.video ? (
-                  <div className="video-frame">
-                    <iframe
-                      src={project.video}
-                      title={`${project.title} video`}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    />
-                  </div>
-                ) : (
-                  <div className="video-placeholder">
-                    <span>Project preview</span>
-                  </div>
-                )}
-              </div>
-            </motion.article>
+            <ProjectPage key={project.title} project={project} index={index} />
           ))}
         </div>
       </section>
