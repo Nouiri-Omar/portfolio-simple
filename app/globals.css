@@ -690,14 +690,9 @@ body {
   min-height: 480px;
   perspective: 2200px;
   filter: drop-shadow(0 28px 26px rgba(46, 28, 17, 0.3));
-  transition: width 420ms ease, filter 420ms ease;
 }
 
 .book-object.closed-book {
-  width: min(560px, 82vw);
-}
-
-.book-object.opening-book {
   width: min(1120px, 92vw);
 }
 
@@ -738,6 +733,17 @@ body {
   display: none;
 }
 
+.closed-book .book-underlay {
+  left: 50%;
+  right: auto;
+  width: 50%;
+}
+
+.closed-book::before,
+.closed-book::after {
+  left: 50%;
+}
+
 .book-underlay {
   position: absolute;
   inset: 0;
@@ -765,7 +771,10 @@ body {
 
 .opening-sheet {
   position: absolute;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 50%;
   z-index: 10;
   transform-origin: left center;
   transform-style: preserve-3d;
@@ -977,8 +986,7 @@ body {
   .reader-chrome { padding: 0.8rem 1rem; }
   .book-stage { padding: 0.5rem 0.8rem 1rem; }
   .book-object { width: 94vw; height: min(720px, 78dvh); min-height: 500px; }
-  .book-object.closed-book { width: min(88vw, 430px); }
-  .book-object.opening-book { width: 94vw; }
+  .book-object.closed-book { width: 94vw; }
   .spread { grid-template-columns: 1fr; overflow-y: auto; }
   .spread-page { min-height: 50%; }
   .spread-copy { padding: 2.5rem 1.5rem 1.7rem; }
