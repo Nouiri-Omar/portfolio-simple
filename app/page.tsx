@@ -141,13 +141,14 @@ function ProjectSpread({ project, index }: { project: Project; index: number }) 
 function PageContent({ page }: { page: number }) {
   if (page === 0) return <CoverPage />;
   if (page === 1) return <div className="spread"><PrefaceLeft /><PrefaceRight /></div>;
-  if (page === projects.length + 2) return <BackCoverPage />;
+  if (page === projects.length + 2) return <div className="single-page-layout"><BackCoverPage /><div className="empty-page" /></div>;
   const projectIndex = page - 2;
   return <ProjectSpread project={projects[projectIndex]} index={projectIndex} />;
 }
 
 function PageFace({ page, side }: { page: number; side: "left" | "right" }) {
-  if (page === 0 || page === projects.length + 2) return <PageContent page={page} />;
+  if (page === 0) return <PageContent page={page} />;
+  if (page === projects.length + 2) return side === "left" ? <BackCoverPage /> : <div className="empty-page" />;
   if (page === 1) return side === "left" ? <PrefaceLeft /> : <PrefaceRight />;
   const projectIndex = page - 2;
   return side === "left" ? <ProjectLeft project={projects[projectIndex]} index={projectIndex} /> : <ProjectRight project={projects[projectIndex]} index={projectIndex} />;
@@ -171,13 +172,13 @@ export default function Home() {
     window.setTimeout(() => {
       setCurrentPage(next);
       setTurningPage(null);
-    }, 720);
+    }, 920);
   };
 
   useEffect(() => {
     let locked = false;
     let touchStartY = 0;
-    const onWheel = (event: WheelEvent) => { event.preventDefault(); if (locked || Math.abs(event.deltaY) < 8) return; locked = true; turnPage(event.deltaY > 0 ? 1 : -1); window.setTimeout(() => { locked = false; }, 760); };
+    const onWheel = (event: WheelEvent) => { event.preventDefault(); if (locked || Math.abs(event.deltaY) < 8) return; locked = true; turnPage(event.deltaY > 0 ? 1 : -1); window.setTimeout(() => { locked = false; }, 960); };
     const onKeyDown = (event: KeyboardEvent) => { if (["ArrowRight", "ArrowDown", " "].includes(event.key)) { event.preventDefault(); turnPage(1); } if (["ArrowLeft", "ArrowUp"].includes(event.key)) { event.preventDefault(); turnPage(-1); } };
     const onTouchStart = (event: TouchEvent) => { touchStartY = event.changedTouches[0].clientY; };
     const onTouchEnd = (event: TouchEvent) => { const delta = touchStartY - event.changedTouches[0].clientY; if (Math.abs(delta) > 42) turnPage(delta > 0 ? 1 : -1); };
@@ -186,5 +187,5 @@ export default function Home() {
   });
 
   const isOpening = currentPage === 0 && turningPage !== null;
-  return <main className="portfolio-book book-reader"><div className="reader-chrome"><span className="brand-lockup"><span className="brand-mark">ON</span> Omar Nouiri</span><span className="reader-progress">{String(currentPage + 1).padStart(2, "0")} / {String(totalPages).padStart(2, "0")}</span></div><section className="book-stage" aria-label="Omar Nouiri portfolio book"><div className={`book-object ${currentPage === 0 ? "closed-book" : "open-book"} ${isOpening ? "opening-book" : ""}`}><div className="book-spine" /><div className="book-underlay"><PageContent page={turningPage ?? currentPage} /></div>{turningPage !== null && <AnimatePresence initial={false}>{isOpening ? <motion.div className="opening-sheet" initial={{ rotateY: 0 }} animate={{ rotateY: -180 }} transition={{ duration: 0.82, ease: [0.22, 0.61, 0.36, 1] }}><div className="sheet-face sheet-front"><CoverPage /></div><div className="sheet-face sheet-back"><PrefaceLeft /></div><div className="sheet-shadow" /></motion.div> : <motion.div className={`turning-sheet ${direction > 0 ? "turn-forward" : "turn-backward"}`} initial={{ rotateY: 0 }} animate={{ rotateY: direction > 0 ? -180 : 180 }} transition={{ duration: 0.72, ease: [0.22, 0.61, 0.36, 1] }}><div className="sheet-face sheet-front">{direction > 0 ? <PageFace page={currentPage} side="right" /> : <PageFace page={currentPage} side="left" />}</div><div className="sheet-face sheet-back">{direction > 0 ? <PageFace page={turningPage} side="left" /> : <PageFace page={turningPage} side="right" />}</div><div className="sheet-shadow" /></motion.div>}</AnimatePresence>}</div><button className="page-corner page-corner-left" onClick={() => turnPage(-1)} aria-label="Previous page">‹</button><button className="page-corner page-corner-right" onClick={() => turnPage(1)} aria-label="Next page">›</button></section><p className="reader-hint">Scroll or use ← → to turn the pages</p></main>;
+  return <main className="portfolio-book book-reader"><div className="reader-chrome"><span className="brand-lockup"><span className="brand-mark">ON</span> Omar Nouiri</span><span className="reader-progress">{String(currentPage + 1).padStart(2, "0")} / {String(totalPages).padStart(2, "0")}</span></div><section className="book-stage" aria-label="Omar Nouiri portfolio book"><div className={`book-object ${currentPage === 0 ? "closed-book" : "open-book"} ${isOpening ? "opening-book" : ""}`}><div className="book-spine" /><div className="book-underlay"><PageContent page={turningPage ?? currentPage} /></div>{turningPage !== null && <AnimatePresence initial={false}>{isOpening ? <motion.div className="opening-sheet" initial={{ rotateY: 0 }} animate={{ rotateY: -180 }} transition={{ duration: 0.9, ease: [0.22, 0.61, 0.36, 1] }}><div className="sheet-face sheet-front"><CoverPage /></div><div className="sheet-face sheet-back"><PrefaceLeft /></div><div className="sheet-shadow" /></motion.div> : <motion.div className={`turning-sheet ${direction > 0 ? "turn-forward" : "turn-backward"}`} initial={{ rotateY: 0 }} animate={{ rotateY: direction > 0 ? -180 : 180 }} transition={{ duration: 0.9, ease: [0.22, 0.61, 0.36, 1] }}><div className="sheet-face sheet-front">{direction > 0 ? <PageFace page={currentPage} side="right" /> : <PageFace page={currentPage} side="left" />}</div><div className="sheet-face sheet-back">{direction > 0 ? <PageFace page={turningPage} side="left" /> : <PageFace page={turningPage} side="right" />}</div><div className="sheet-shadow" /></motion.div>}</AnimatePresence>}</div><button className="page-corner page-corner-left" onClick={() => turnPage(-1)} aria-label="Previous page">‹</button><button className="page-corner page-corner-right" onClick={() => turnPage(1)} aria-label="Next page">›</button></section><p className="reader-hint">Scroll or use ← → to turn the pages</p></main>;
 }
