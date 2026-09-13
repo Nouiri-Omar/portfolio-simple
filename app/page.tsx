@@ -1,6 +1,8 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
+import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 type Project = {
@@ -13,7 +15,13 @@ type Project = {
   tech: string[];
   palette: [string, string, string];
   link?: string;
+  image?: string;
+  video?: string;
 };
+
+const profileImage = "";
+const linkedinUrl = "https://www.linkedin.com/in/omar-nouiri/";
+const githubUrl = "https://github.com/Nouiri-Omar";
 
 const projects: Project[] = [
   {
@@ -103,11 +111,15 @@ const projects: Project[] = [
 ];
 
 function CoverPage() {
-  return <article className="cover-page"><div className="cover-seal">ON</div><p className="cover-imprint">Selected work / 2021-2025</p><h1>Omar Nouiri</h1><p className="cover-role">Senior AI/ML Consultant<br />Data Scientist · Full-stack builder</p><div className="cover-rule" /><p className="cover-note">A portfolio in chapters</p><p className="cover-open">Scroll to open the book ↓</p></article>;
+  return <article className="cover-page"><div className="cover-seal">{profileImage ? <Image src={profileImage} alt="Omar Nouiri" width={96} height={96} priority /> : "ON"}</div><p className="cover-imprint">Selected work / 2021-2025</p><h1>Omar Nouiri</h1><p className="cover-role">Senior AI/ML Consultant<br />Data Scientist · Full-stack builder<br />Casablanca, Morocco</p><SocialLinks includeEmail /><div className="cover-rule" /><p className="cover-note">A portfolio in chapters</p><p className="cover-open">Scroll to open the book ↓</p></article>;
+}
+
+function SocialLinks({ includeEmail = false }: { includeEmail?: boolean }) {
+  return <div className="social-links" aria-label="Professional links">{includeEmail && <a href="mailto:omar.nouiri98@gmail.com" aria-label="Email Omar Nouiri" title="Email"><FaEnvelope /></a>}<a href={linkedinUrl} target="_blank" rel="noreferrer" aria-label="LinkedIn profile" title="LinkedIn"><FaLinkedin /></a><a href={githubUrl} target="_blank" rel="noreferrer" aria-label="GitHub profile" title="GitHub"><FaGithub /></a></div>;
 }
 
 function PrefaceLeft() {
-  return <article className="spread-page spread-copy"><div className="page-number">01</div><p className="spread-kicker">Preface</p><h2>Building useful intelligence.</h2><p className="summary">This book gathers selected work across generative AI, document intelligence, NLP, data engineering, and product delivery. Each chapter follows a problem from its first question to a system people can use.</p><p className="preface-signoff">Omar Nouiri<br /><span>Tangier, Morocco</span></p></article>;
+  return <article className="spread-page spread-copy"><div className="page-number">01</div><p className="spread-kicker">Preface</p><h2>Building useful intelligence.</h2><p className="summary">This book gathers selected work across generative AI, document intelligence, NLP, data engineering, and product delivery. Each chapter follows a problem from its first question to a system people can use.</p><p className="preface-signoff">Omar Nouiri<br /><span>Casablanca, Morocco</span></p></article>;
 }
 
 function PrefaceRight() {
@@ -119,7 +131,7 @@ function ProjectLeft({ project, index }: { project: Project; index: number }) {
 }
 
 function ProjectRight({ project, index }: { project: Project; index: number }) {
-  return <article className="spread-page spread-media"><div className="page-number">{String(index * 2 + 4).padStart(2, "0")}</div><div className="media-plate" style={{ background: `linear-gradient(135deg, ${project.palette[0]}, ${project.palette[1]} 55%, ${project.palette[2]})` }}><div className="plate-frame"><span>{project.category}</span><strong>Project illustration</strong><small>A representative image or product screenshot belongs here.</small></div></div><div className="media-caption"><span>Plate {String(index + 1).padStart(2, "0")}</span><span>Image / video insert pending</span></div></article>;
+  return <article className="spread-page spread-media"><div className="page-number">{String(index * 2 + 4).padStart(2, "0")}</div>{project.image ? <Image className="media-image" src={project.image} alt={`${project.title} project preview`} width={800} height={600} /> : <div className="media-plate" style={{ background: `linear-gradient(135deg, ${project.palette[0]}, ${project.palette[1]} 55%, ${project.palette[2]})` }}><div className="plate-frame"><span>{project.category}</span><strong>Project illustration</strong><small>Add an image path in the project data to show a screenshot here.</small></div></div>}{project.video ? <a className="video-banner" href={project.video} target="_blank" rel="noreferrer"><span className="video-play">▶</span><span>Open project walkthrough</span></a> : <div className="video-banner video-pending"><span>Video walkthrough pending</span></div>}<div className="media-caption"><span>Plate {String(index + 1).padStart(2, "0")}</span><span>Image / video insert</span></div></article>;
 }
 
 function ProjectSpread({ project, index }: { project: Project; index: number }) {
@@ -142,7 +154,7 @@ function PageFace({ page, side }: { page: number; side: "left" | "right" }) {
 }
 
 function BackCoverPage() {
-  return <article className="back-cover-page"><p className="cover-imprint">Colophon</p><h2>Let’s build<br />something useful.</h2><div className="back-contact"><a href="mailto:omar.nouiri98@gmail.com">omar.nouiri98@gmail.com</a><a href="tel:+212620217930">+212 6 20 21 79 30</a><span>Tangier, Morocco</span></div><p className="cover-note">Available for AI, product, and data-driven work.</p></article>;
+  return <article className="back-cover-page"><p className="cover-imprint">Colophon</p><h2>Let’s build<br />something useful.</h2><div className="back-contact"><a href="mailto:omar.nouiri98@gmail.com">omar.nouiri98@gmail.com</a><a href="tel:+212620217930">+212 6 20 21 79 30</a><span>Casablanca, Morocco</span></div><SocialLinks /><p className="cover-note">Available for AI, product, and data-driven work.</p></article>;
 }
 
 export default function Home() {
