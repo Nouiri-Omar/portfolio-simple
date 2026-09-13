@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local design notes
+portfolio-book-spec.md
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
