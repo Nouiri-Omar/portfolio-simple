@@ -742,19 +742,17 @@ body {
   left: 0;
 }
 
-.book-underlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  overflow: hidden;
-  border-radius: 8px 25px 25px 8px;
+/* Back cover: spine is on the right, so the unopened page-stack
+   should show on the left instead — mirror of the front-cover case above. */
+.end-book.closed-book::before {
+  left: -13px;
+  right: 0;
+  border-radius: 24px 8px 8px 24px;
 }
 
-.book-underlay > .cover-page,
-.book-underlay > .back-cover-page,
-.book-underlay > .spread,
-.book-underlay > .single-page-layout {
-  height: 100%;
+.end-book.closed-book::after {
+  left: -20px;
+  right: 0;
 }
 
 .visible-spread {
@@ -765,6 +763,24 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 2px;
   background: #6f4b2b;
+}
+
+.book-underlay > .cover-page,
+.book-underlay > .back-cover-page,
+.book-underlay > .spread,
+.book-underlay > .single-page-layout {
+  height: 100%;
+}
+
+/* At rest (not mid-flip), a cover is one page wide, flush to its spine
+   side — not stretched across the whole two-page-spread width. */
+.book-underlay > .cover-page,
+.book-underlay > .back-cover-page {
+  width: 50%;
+}
+
+.book-underlay > .back-cover-page {
+  margin-left: auto;
 }
 
 .visible-page {
@@ -818,7 +834,7 @@ body {
   top: 0;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: 50%;
   z-index: 10;
   transform-origin: left center;
   transform-style: preserve-3d;
@@ -827,16 +843,48 @@ body {
 }
 
 .opening-sheet .sheet-face {
-  border-radius: 8px 25px 25px 8px;
+  border-radius: 8px 0 0 8px;
+}
+
+/* The page that was already resting under the cover — static and
+   visible from the first frame, since the opening-sheet only ever
+   covers the left half. */
+.opening-static {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 50%;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .closing-sheet {
   position: absolute;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 50%;
   z-index: 10;
   transform-origin: right center;
   transform-style: preserve-3d;
   backface-visibility: visible;
+  pointer-events: none;
+}
+
+.closing-sheet .sheet-face {
+  border-radius: 0 25px 25px 0;
+}
+
+/* Mirror of .opening-static: the page already resting to the left
+   of the back cover, static throughout the closing flip. */
+.closing-static {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  z-index: 2;
   pointer-events: none;
 }
 
