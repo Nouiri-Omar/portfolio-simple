@@ -887,10 +887,15 @@ body {
   animation: page-shadow 900ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
-@keyframes page-shadow {
-  0%, 100% { opacity: 0; }
-  48% { opacity: 0.75; }
-}
+  @keyframes page-shadow {
+    0%, 100% { opacity: 0; }
+    48% { opacity: 0.75; }
+  }
+  
+  .turn-backward .sheet-shadow,
+  .closing-sheet .sheet-shadow {
+    background: linear-gradient(270deg, rgba(34, 15, 8, 0.35), transparent 35%, rgba(34, 15, 8, 0.08));
+  }
 
 .cover-page,
 .back-cover-page {

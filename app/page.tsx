@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type Project = {
   title: string;
@@ -99,31 +99,78 @@ export default function Home() {
   const [direction, setDirection] = useState(1);
   const locked = useRef(false);
 
-  const turnPage = (step: number) => {
+ const TURN_DURATION_MS = 920;
+
+const turnPage = useCallback(
+  (step: number) => {
     if (locked.current) return;
+
     const next = Math.max(0, Math.min(totalPages - 1, currentPage + step));
     if (next === currentPage) return;
+
     locked.current = true;
     setDirection(step > 0 ? 1 : -1);
     setTurningPage(next);
-    window.setTimeout(() => { setCurrentPage(next); setTurningPage(null); locked.current = false; }, 920);
+
+    window.setTimeout(() => {
+      setCurrentPage(next);
+      setTurningPage(null);
+      locked.current = false;
+    }, TURN_DURATION_MS);
+  },
+  [currentPage, totalPages],
+);
+
+useEffect(() => {
+  const onWheel = (event: WheelEvent) => {
+    event.preventDefault();
+    if (Math.abs(event.deltaY) > 8) {
+      turnPage(event.deltaY > 0 ? 1 : -1);
+    }
   };
 
-  useEffect(() => {
-    const onWheel = (event: WheelEvent) => { event.preventDefault(); if (Math.abs(event.deltaY) > 8) turnPage(event.deltaY > 0 ? 1 : -1); };
-    const onKeyDown = (event: KeyboardEvent) => { if (["ArrowRight", "ArrowDown", " "].includes(event.key)) { event.preventDefault(); turnPage(1); } if (["ArrowLeft", "ArrowUp"].includes(event.key)) { event.preventDefault(); turnPage(-1); } };
-    let touchY = 0;
-    const onTouchStart = (event: TouchEvent) => { touchY = event.changedTouches[0].clientY; };
-    const onTouchEnd = (event: TouchEvent) => { const delta = touchY - event.changedTouches[0].clientY; if (Math.abs(delta) > 42) turnPage(delta > 0 ? 1 : -1); };
-    window.addEventListener("wheel", onWheel, { passive: false }); window.addEventListener("keydown", onKeyDown); window.addEventListener("touchstart", onTouchStart, { passive: true }); window.addEventListener("touchend", onTouchEnd, { passive: true });
-    return () => { window.removeEventListener("wheel", onWheel); window.removeEventListener("keydown", onKeyDown); window.removeEventListener("touchstart", onTouchStart); window.removeEventListener("touchend", onTouchEnd); };
-  });
+  const onKeyDown = (event: KeyboardEvent) => {
+    if (["ArrowRight", "ArrowDown", " "].includes(event.key)) {
+      event.preventDefault();
+      turnPage(1);
+    }
+    if (["ArrowLeft", "ArrowUp"].includes(event.key)) {
+      event.preventDefault();
+      turnPage(-1);
+    }
+  };
+
+  let touchY = 0;
+  const onTouchStart = (event: TouchEvent) => {
+    touchY = event.changedTouches[0].clientY;
+  };
+  const onTouchEnd = (event: TouchEvent) => {
+    const delta = touchY - event.changedTouches[0].clientY;
+    if (Math.abs(delta) > 42) {
+      turnPage(delta > 0 ? 1 : -1);
+    }
+  };
+
+  window.addEventListener("wheel", onWheel, { passive: false });
+  window.addEventListener("keydown", onKeyDown);
+  window.addEventListener("touchstart", onTouchStart, { passive: true });
+  window.addEventListener("touchend", onTouchEnd, { passive: true });
+
+  return () => {
+    window.removeEventListener("wheel", onWheel);
+    window.removeEventListener("keydown", onKeyDown);
+    window.removeEventListener("touchstart", onTouchStart);
+    window.removeEventListener("touchend", onTouchEnd);
+  };
+}, [turnPage]);
 
   const isOpening = currentPage === 0 && turningPage !== null;
   const isClosing = currentPage === totalPages - 1 && turningPage !== null && direction < 0;
-  const isClosed = currentPage === 0 || (currentPage === totalPages - 1 && turningPage === null);
-  const visibleSpread = currentPage > 0 && currentPage < totalPages - 1 ? <div className="visible-spread"><div className="visible-page">{PageFace({ page: currentPage, side: "left" })}</div><div className="visible-page">{PageFace({ page: currentPage, side: "right" })}</div></div> : null;
-
+ const isClosed = currentPage === 0 || (currentPage === totalPages - 1 && turningPage === null);
+const isMidTurn = turningPage !== null && !isOpening && !isClosing;
+const leftFace = isMidTurn && direction < 0 ? turningPage! : currentPage;
+const rightFace = isMidTurn && direction > 0 ? turningPage! : currentPage;
+const visibleSpread = currentPage > 0 && currentPage < totalPages - 1 ? <div className="visible-spread"><div className="visible-page">{PageFace({ page: leftFace, side: "left" })}</div><div className="visible-page">{PageFace({ page: rightFace, side: "right" })}</div></div> : null;
   const turningSheet = isOpening ? <motion.div key="opening-cover" className="opening-sheet" initial={{ rotateY: 0 }} animate={{ rotateY: -180 }} transition={{ duration: 0.9, ease: [0.22, 0.61, 0.36, 1] }}><div className="sheet-face sheet-front"><CoverPage /></div><div className="sheet-face sheet-back"><PrefaceLeft /></div><div className="sheet-shadow" /></motion.div> : isClosing ? <motion.div key="closing-cover" className="closing-sheet" initial={{ rotateY: 0 }} animate={{ rotateY: 180 }} transition={{ duration: 0.9, ease: [0.22, 0.61, 0.36, 1] }}><div className="sheet-face sheet-front"><BackCoverPage /></div><div className="sheet-face sheet-back"><PageContent page={turningPage!} /></div><div className="sheet-shadow" /></motion.div> : <motion.div key={`${turningPage}-${direction}`} className={`turning-sheet ${direction > 0 ? "turn-forward" : "turn-backward"}`} initial={{ rotateY: 0 }} animate={{ rotateY: direction > 0 ? -180 : 180 }} transition={{ duration: 0.9, ease: [0.22, 0.61, 0.36, 1] }}><div className="sheet-face sheet-front">{direction > 0 ? PageFace({ page: currentPage, side: "right" }) : PageFace({ page: currentPage, side: "left" })}</div><div className="sheet-face sheet-back">{direction > 0 ? PageFace({ page: turningPage!, side: "left" }) : PageFace({ page: turningPage!, side: "right" })}</div><div className="sheet-shadow" /></motion.div>;
 
   return <main className="portfolio-book book-reader"><div className="reader-chrome"><span className="brand-lockup"><span className="brand-mark">ON</span> Omar Nouiri</span><span className="reader-progress">{String(currentPage + 1).padStart(2, "0")} / {String(totalPages).padStart(2, "0")}</span></div><section className="book-stage" aria-label="Omar Nouiri portfolio book"><div className={`book-object ${isClosed ? "closed-book" : "open-book"} ${currentPage === 0 ? "start-book" : ""} ${isOpening ? "opening-book" : ""}`}><div className="book-underlay"><PageContent page={turningPage ?? currentPage} /></div>{visibleSpread}{turningPage !== null && <AnimatePresence>{turningSheet}</AnimatePresence>}<div className="book-spine" /><button className="page-corner page-corner-left" onClick={() => turnPage(-1)} aria-label="Previous page">‹</button><button className="page-corner page-corner-right" onClick={() => turnPage(1)} aria-label="Next page">›</button></div></section><p className="reader-hint">Scroll or use ← → to turn the pages</p></main>;
